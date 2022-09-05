@@ -1,6 +1,7 @@
 import { textDecoration } from "@chakra-ui/react";
 import { Button } from "@mui/material";
 import { memo, useState, VFC, CSSProperties, useEffect } from "react";
+import { Illustlation } from "./Illustlation";
 
 interface Props {
   sentence: string;
@@ -21,29 +22,29 @@ export function Sentence(props: Props) {
   }
 
   const [ displayImage, setDisplayImage ] = useState<boolean|undefined>(props.displayImage);
-  // setDisplayImage(false);
-
-  // useEffect(() => {
-
-  // }, [displayImage]);
 
   if (props.existIllust) {
     if (displayImage) {
-      console.log(displayImage, props.displayImage);
+      // console.log(displayImage, props.displayImage);
       return (
         <>
           <a
             onMouseDown={() => {
-              console.log(props.sentence);
+              // console.log(props.sentence);
               setDisplayImage(true);
             }}
-            style={{backgroundColor: '#efebe9'}}
           >
             {props.sentence}
           </a>
-          <img
+          {/* <img
             src={props.imagePath}
             style={imageLeftStyle}
+          /> */}
+          <Illustlation
+            path={props.imagePath}
+            display={true}
+            style={imageLeftStyle}
+            sentence={props.sentence}
           />
         </>
       )
@@ -52,11 +53,10 @@ export function Sentence(props: Props) {
         <>
           <a
             onMouseDown={() => {
-              console.log(props.sentence);
+              // console.log(props.sentence);
               setDisplayImage(true);
             }}
             style={{
-              backgroundColor: '#efebe9',
               textDecoration: 'underline',
               textDecorationColor: '#795548',
               textDecorationThickness: '1.5px',

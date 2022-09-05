@@ -1,4 +1,5 @@
 import { memo, useEffect, useState, VFC } from "react";
+import { Illustlation } from "../organisms/Book/Illustlation";
 import { Story } from "../organisms/Book/Story";
 
 export const Book: VFC = memo(() => {
@@ -21,6 +22,7 @@ export const Book: VFC = memo(() => {
         </div>
       </>
       <Story />
+      {/* <Illustlation> */}
       {/* <br/> */}
     </div>
   )

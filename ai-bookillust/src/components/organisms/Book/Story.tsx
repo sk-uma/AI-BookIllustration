@@ -62,9 +62,10 @@ export const Story: VFC = memo(() => {
                 # {lineData[0].name}
                 <br/>
               </div>
-              <a key={n}>
-                {str}
-              </a>
+              <Sentence
+                sentence={str}
+                existIllust={false}
+              />
             </>
           )
         } else {
