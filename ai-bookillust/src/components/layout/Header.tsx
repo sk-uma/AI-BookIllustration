@@ -9,7 +9,7 @@ export default function MyAppBar() {
       <AppBar>
         <Toolbar>
           <Typography variant="h6" component="div">
-            AI Book illustration
+            AI挿絵
           </Typography>
         </Toolbar>
       </AppBar>

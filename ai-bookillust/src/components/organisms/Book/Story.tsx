@@ -3,21 +3,6 @@ import { memo, useEffect, useState, VFC, CSSProperties } from "react";
 import { Sentence } from "./Sentence";
 
 export const Story: VFC = memo(() => {
-  const imageRightStyle: CSSProperties = {
-    float: 'right',
-    margin: '15px',
-    width: '250px',
-    height: '250px',
-    marginRight: '0px',
-  }
-  const imageLeftStyle: CSSProperties = {
-    float: 'left',
-    margin: '15px',
-    width: '250px',
-    height: '250px',
-    marginLeft: '0px',
-  }
-
   const [ text, setText ] = useState<String>();
   const [ metaData, setMetaData ] = useState<any>();
 
@@ -36,8 +21,6 @@ export const Story: VFC = memo(() => {
     };
     fetch_text();
   }, []);
-
-  // console.log(metaData?.paragraph);
 
   let latest_n = -1000;
   let illust_idx = 0;

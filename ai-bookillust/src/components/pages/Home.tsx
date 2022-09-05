@@ -21,9 +21,7 @@ export const Home: VFC = memo(() => {
   return (
     <>
       <AppBar/>
-      <Box style={{width: '85%', maxWidth: '1200px', margin: 'auto'}}>
-        <Book/>
-      </Box>
+      <Book/>
     </>
   )
 });
