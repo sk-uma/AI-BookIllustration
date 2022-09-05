@@ -1,23 +1,7 @@
 import { memo, useEffect, useState, VFC } from "react";
+import { Story } from "../organisms/Book/Story";
 
 export const Book: VFC = memo(() => {
-  const [ text, setText ] = useState<String>();
-  const [ metaData, setMetaData ] = useState<any>();
-
-  useEffect(() => {
-    const fetch_data = async () => {
-      const response = await fetch(`${window.location.origin}/assets/kaijin/DALL-E2/metadata.json`);
-      const body = await response.json();
-      setMetaData(body);
-    }
-    fetch_data();
-    const fetch_text = async () => {
-      const response = await fetch(`${window.location.origin}/assets/kaijin/text.txt`);
-      const body = await response.text();
-      setText(body);
-    };
-    fetch_text();
-  }, []);
 
   // console.log(metaData?.paragraph);
 
@@ -36,31 +20,8 @@ export const Book: VFC = memo(() => {
           </div>
         </div>
       </>
-      <br/>
-
-      {text?.split('\r\n').map((str: string, n: number) => {
-        let lineData = metaData?.paragraph.filter((data: any) => {
-          return data.line == n
-        })
-        if (lineData?.length !== 0) {
-          return (
-            <>
-              <div key={`book_paragraph_${n}`}>
-                <br/>
-                # {lineData[0].name}
-                <br/>
-              </div>
-              <a key={n}>
-                {str}
-              </a>
-            </>
-          )
-        } else {
-          return (
-            <a key={n}>{str}</a>
-          )
-        }
-      })}
+      <Story />
+      {/* <br/> */}
     </div>
   )
 });

@@ -1,7 +1,14 @@
 import { memo, VFC } from "react";
 
-export const Sentence: VFC = memo(() => {
+interface Props {
+  sentence: string;
+  withIllust: boolean;
+  imagePath?: string;
+  imageAlive?: boolean;
+};
+
+export function Sentence(props: Props) {
   return (
     <></>
   )
-})
+}
