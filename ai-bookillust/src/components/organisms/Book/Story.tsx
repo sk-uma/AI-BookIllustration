@@ -1,5 +1,6 @@
 // import { CSSProperties } from "@mui/styled-engine";
 import { memo, useEffect, useState, VFC, CSSProperties } from "react";
+import { Sentence } from "./Sentence";
 
 export const Story: VFC = memo(() => {
   const imageRightStyle: CSSProperties = {
@@ -39,6 +40,7 @@ export const Story: VFC = memo(() => {
   // console.log(metaData?.paragraph);
 
   let latest_n = -1000;
+  let illust_idx = 0;
   return (
     <>
       {text?.split('\r\n').map((str: string, n: number) => {
@@ -67,23 +69,28 @@ export const Story: VFC = memo(() => {
           )
         } else {
           // console.log(imageData?.length)
-          if (imageData?.length !== 0 && latest_n + 50 < n) {
-            latest_n = n;
+          if (imageData?.length !== 0) {
+            let display = false;
+            if (latest_n + 50 < n) {
+              display = true;
+              latest_n = n;
+            }
+            illust_idx += 1;
             return (
-              <a key={n}>
-                <img 
-                  src={`${window.location.origin}/assets/kaijin/DALL-E2/${imageData[0].filename[0]}`}
-                  style={image_n % 2 === 0 ? imageLeftStyle : imageRightStyle}
-                  // style={imageLeftStyle}
-                />
-                {str}
-              </a>
+              <Sentence
+                sentence={str}
+                existIllust={true}
+                imagePath={`${window.location.origin}/assets/kaijin/DALL-E2/${imageData[0].filename[0]}`}
+                displayImage={display}
+                displayPosition={illust_idx % 2 === 0 ? 'left' : 'right'}
+              />
             )
           } else {
             return (
-              <a key={n}>
-                {str}
-              </a>
+              <Sentence
+                sentence={str}
+                existIllust={false}
+              />
             )
           }
         }
