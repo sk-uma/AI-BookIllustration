@@ -59,8 +59,9 @@ export const Story: VFC = memo(() => {
             <>
               <div key={`book_paragraph_${n}`}>
                 <br/>
-                # {lineData[0].name}
-                <br/>
+                <div style={{fontSize: '1.5em', fontWeight: 'bold', textAlign: 'center'}}>
+                  {lineData[0].name}
+                </div>
               </div>
               <Sentence
                 sentence={str}

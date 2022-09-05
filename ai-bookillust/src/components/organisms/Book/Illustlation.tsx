@@ -1,14 +1,24 @@
 import { CSSProperties, useState } from "react";
 import { IllustlationDialog } from "./IllustlationDialog";
+import '../../../style/illustlation.css';
 
 interface Props {
   path: string | undefined;
   sentence: string;
   display: boolean;
-  style: CSSProperties;
+  displayPosition?: 'right' | 'left';
 }
 
 export function Illustlation(props: Props) {
+  const imageStyle: CSSProperties = {
+    float: props.displayPosition,
+    margin: '15px',
+    width: '250px',
+    height: '250px',
+    overflow: 'hidden',
+    marginLeft: props.displayPosition === 'left' ? '0px' : '15px',
+    marginRight: props.displayPosition === 'left' ? '15px' : '0px',
+  }
   const [ isOpen, setIsOpen ] = useState<boolean>(false);
 
   const handleClose = () => {
@@ -24,10 +34,11 @@ export function Illustlation(props: Props) {
       <>
         <img
           src={props.path}
-          style={props.style}
+          style={imageStyle}
           onMouseDown={() => {
             setIsOpen(true);
           }}
+          className={'illustlation'}
         />
         <IllustlationDialog
           open={isOpen}
