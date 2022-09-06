@@ -22,7 +22,7 @@ export const Book: VFC = memo(() => {
           title={bookl[0].title}
           author={bookl[0].auther}
           illustrator={bookl[0].illustrator}
-          imagePath={`${window.location.origin}/assets/kaijin/DALL-E2/${bookl[0].headerPath}`}
+          imagePath={`${window.location.origin}/assets/${titleId}/${illustrator}/${bookl[0].headerPath}`}
         />
         <Box style={{width: '85%', maxWidth: '1200px', margin: 'auto'}}>
           <Story

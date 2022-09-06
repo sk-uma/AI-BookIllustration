@@ -40,7 +40,7 @@ export function BookCard(props: Props) {
           </Typography>
           <Typography sx={{ fontSize: 14, color: 'gray' }}>
             <span>
-              著・{book[0].auther}{"　"}
+              著・{book[0].auther}<br/>
             </span>
             <span>
               絵・{book[0].illustrator}

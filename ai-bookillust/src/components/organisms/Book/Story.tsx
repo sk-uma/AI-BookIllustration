@@ -61,7 +61,7 @@ export function Story(props: Props) {
         if (lineData?.length !== 0) {
           if (imageData?.length !== 0) {
             let display = false;
-            if (latest_n + 50 < n) {
+            if (latest_n + 150 < n) {
               display = true;
               latest_n = n;
             }
@@ -105,7 +105,7 @@ export function Story(props: Props) {
         } else {
           if (imageData?.length !== 0) {
             let display = false;
-            if (latest_n + 50 < n) {
+            if (latest_n + 150 < n) {
               display = true;
               latest_n = n;
             }

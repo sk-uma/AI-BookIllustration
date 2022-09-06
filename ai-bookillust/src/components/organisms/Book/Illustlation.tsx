@@ -1,6 +1,8 @@
 import { CSSProperties, useState } from "react";
 import { IllustlationDialog } from "./IllustlationDialog";
 import '../../../style/illustlation.css';
+import { Box } from "@mui/material";
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 interface Props {
   path: string | undefined;
@@ -21,6 +23,7 @@ export function Illustlation(props: Props) {
     marginRight: props.displayPosition === 'left' ? '15px' : '0px',
   }
   const [ isOpen, setIsOpen ] = useState<boolean>(false);
+  const [ width, height ] = useWindowSize();
 
   const handleClose = () => {
     setIsOpen(false);
@@ -31,25 +34,55 @@ export function Illustlation(props: Props) {
   }
 
   if (props.display) {
-    return (
-      <>
-        <img
-          src={props.path}
-          style={imageStyle}
-          onMouseDown={() => {
-            setIsOpen(true);
-          }}
-          className={'illustlation'}
-        />
-        <IllustlationDialog
-          enSentence={props.enSentence}
-          open={isOpen}
-          onClose={handleClose}
-          sentence={props.sentence}
-          path={props.path}
-        />
-      </>
-    )
+    if (width < 600) {
+      return (
+        <>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Box
+              component="img"
+              src={props.path}
+              style={{float: 'none', width: '90%'}}
+              onMouseDown={() => {
+                setIsOpen(true);
+              }}
+              className={'illustlation'}
+          />
+          </Box>
+          <IllustlationDialog
+            enSentence={props.enSentence}
+            open={isOpen}
+            onClose={handleClose}
+            sentence={props.sentence}
+            path={props.path}
+          />
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Box
+            component="img"
+            src={props.path}
+            style={imageStyle}
+            onMouseDown={() => {
+              setIsOpen(true);
+            }}
+            className={'illustlation'}
+          />
+          <IllustlationDialog
+            enSentence={props.enSentence}
+            open={isOpen}
+            onClose={handleClose}
+            sentence={props.sentence}
+            path={props.path}
+          />
+        </>
+      )
+    }
   } else {
     return (
       <>

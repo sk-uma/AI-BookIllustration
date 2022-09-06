@@ -12,6 +12,9 @@ export function Title(props: Props) {
   const headerStyle: CSSProperties = {
     width: '100%',
     backgroundImage: `url(${props.imagePath})`,
+    backgroundSize: '100% auto',
+    backgroundPositionY: '30%',
+    marginBottom: '30px',
   }
 
   return (
