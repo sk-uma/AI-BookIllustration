@@ -46,7 +46,7 @@ export function Story(props: Props) {
   let illust_idx = 0;
   return (
     <>
-      {text?.split('\r\n').map((str: string, n: number) => {
+      {text?.split('\n').map((str: string, n: number) => {
         let lineData = metaData?.paragraph.filter((data: any) => {
           return data.line === n;
         })
