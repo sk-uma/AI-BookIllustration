@@ -23,7 +23,6 @@ export function MyHelmet(props: Props) {
     image = `${window.location.origin}/${constUrl.path}/assets/chumon/StableDiffusion/0000000007_0000000000.jpg`;
     type = 'website';
   }
-
   return (
     <>
       <Helmet
@@ -35,6 +34,10 @@ export function MyHelmet(props: Props) {
           { property: 'og:url', content: `${window.location.origin}` },
           { property: 'og:image', content: image },
           { property: 'og:description', content: description },
+          { name: 'twitter:card', content: 'summary_large_image' },
+          { name: 'twitter:image', content: image },
+          { name: 'twitter:description', content: description },
+          { name: 'twitter:title', content: title },
         ]}
       />
     </>
