@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/AI-BookIllustration/static/css/main.07bc22eb.css",
+    "main.js": "/AI-BookIllustration/static/js/main.04f3e57d.js",
+    "static/js/787.3d97de77.chunk.js": "/AI-BookIllustration/static/js/787.3d97de77.chunk.js",
+    "index.html": "/AI-BookIllustration/index.html",
+    "main.07bc22eb.css.map": "/AI-BookIllustration/static/css/main.07bc22eb.css.map",
+    "main.04f3e57d.js.map": "/AI-BookIllustration/static/js/main.04f3e57d.js.map",
+    "787.3d97de77.chunk.js.map": "/AI-BookIllustration/static/js/787.3d97de77.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.07bc22eb.css",
+    "static/js/main.04f3e57d.js"
+  ]
+}
