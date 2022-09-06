@@ -61,7 +61,7 @@ export const booklist: Array<bookInterface> = [
     titleId: 'kaijin',
     auther: '江戸川 乱歩',
     illustrator: 'StableDiffusion',
-    headerPath: '0000000042_0000000000.jpg',
+    headerPath: '0000000000_0000000000.jpg',
   },
   {
     title: '怪人二十面相',
