@@ -2,6 +2,19 @@
 import { memo, useEffect, useState, VFC, CSSProperties } from "react";
 import { Sentence } from "./Sentence";
 
+interface Props {
+  sentence: string;
+  existIllust: boolean;
+  lineStyle: 'full' | 'nonFull';
+  imagePath?: string;
+  displayImage?: boolean;
+  displayPosition?: 'right' | 'left';
+};
+
+function ImageAndSentence(props: Props, displayImage: boolean) {
+  ;
+}
+
 export const Story: VFC = memo(() => {
   const [ text, setText ] = useState<String>();
   const [ metaData, setMetaData ] = useState<any>();
@@ -38,22 +51,49 @@ export const Story: VFC = memo(() => {
           return data.line == n
         })
         if (lineData?.length !== 0) {
-          return (
-            <>
-              <div key={`book_paragraph_${n}`}>
-                <br/>
-                <div style={{fontSize: '1.5em', fontWeight: 'bold', textAlign: 'center'}}>
-                  {lineData[0].name}
+          if (imageData?.length !== 0) {
+            let display = false;
+            if (latest_n + 50 < n) {
+              display = true;
+              latest_n = n;
+            }
+            illust_idx += 1;
+            return (
+              <>
+                <div key={`book_paragraph_${n}`}>
+                  <br/>
+                  <div style={{fontSize: '1.5em', fontWeight: 'bold', textAlign: 'center'}}>
+                    {lineData[0].name}
+                  </div>
                 </div>
-              </div>
-              <Sentence
-                sentence={str}
-                existIllust={false}
-              />
-            </>
-          )
+                <Sentence
+                  sentence={str}
+                  existIllust={true}
+                  imagePath={`${window.location.origin}/assets/kaijin/DALL-E2/${imageData[0].filename[0]}`}
+                  displayImage={display}
+                  displayPosition={illust_idx % 2 === 0 ? 'left' : 'right'}
+                  lineStyle={'nonFull'}
+                />
+              </>
+            )
+          } else {
+            return (
+              <>
+                <div key={`book_paragraph_${n}`}>
+                  <br/>
+                  <div style={{fontSize: '1.5em', fontWeight: 'bold', textAlign: 'center'}}>
+                    {lineData[0].name}
+                  </div>
+                </div>
+                <Sentence
+                  sentence={str}
+                  existIllust={false}
+                  lineStyle={'nonFull'}
+                />
+              </>
+            )
+          }
         } else {
-          // console.log(imageData?.length)
           if (imageData?.length !== 0) {
             let display = false;
             if (latest_n + 50 < n) {
@@ -68,6 +108,7 @@ export const Story: VFC = memo(() => {
                 imagePath={`${window.location.origin}/assets/kaijin/DALL-E2/${imageData[0].filename[0]}`}
                 displayImage={display}
                 displayPosition={illust_idx % 2 === 0 ? 'left' : 'right'}
+                lineStyle={'nonFull'}
               />
             )
           } else {
@@ -75,6 +116,7 @@ export const Story: VFC = memo(() => {
               <Sentence
                 sentence={str}
                 existIllust={false}
+                lineStyle={'nonFull'}
               />
             )
           }

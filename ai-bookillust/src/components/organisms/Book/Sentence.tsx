@@ -6,6 +6,7 @@ import { Illustlation } from "./Illustlation";
 interface Props {
   sentence: string;
   existIllust: boolean;
+  lineStyle: 'full' | 'nonFull';
   imagePath?: string;
   displayImage?: boolean;
   displayPosition?: 'right' | 'left';
@@ -13,6 +14,26 @@ interface Props {
 
 export function Sentence(props: Props) {
   const [ displayImage, setDisplayImage ] = useState<boolean|undefined>(props.displayImage);
+  let ableStyle: CSSProperties = {};
+  let disableStyle: CSSProperties = {};
+  if (props.lineStyle === 'nonFull') {
+    ableStyle = {
+      textDecoration: 'underline',
+      textDecorationColor: '#80cbc4',
+      textDecorationThickness: '1.5px',
+    }
+    disableStyle = {
+      textDecoration: 'underline',
+      textDecorationColor: '#a1887f',
+      textDecorationThickness: '1.5px',
+    }
+  } else {
+    ableStyle = {
+      textDecoration: 'underline',
+      textDecorationColor: '#80cbc4',
+      textDecorationThickness: '1.5px',
+    }
+  }
 
   if (props.existIllust) {
     if (displayImage) {
@@ -22,11 +43,7 @@ export function Sentence(props: Props) {
             onMouseDown={() => {
               setDisplayImage(false);
             }}
-            style={{
-              textDecoration: 'underline',
-              textDecorationColor: '#80cbc4',
-              textDecorationThickness: '1.5px',
-            }}
+            style={ableStyle}
           >
             {props.sentence}
           </a>
@@ -45,11 +62,7 @@ export function Sentence(props: Props) {
             onMouseDown={() => {
               setDisplayImage(true);
             }}
-            style={{
-              textDecoration: 'underline',
-              textDecorationColor: '#a1887f',
-              textDecorationThickness: '1.5px',
-            }}
+            style={disableStyle}
           >
             {props.sentence}
           </a>
