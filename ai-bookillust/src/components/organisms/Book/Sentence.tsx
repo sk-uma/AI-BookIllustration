@@ -5,6 +5,7 @@ import { Illustlation } from "./Illustlation";
 
 interface Props {
   sentence: string;
+  enSentence?: string;
   existIllust: boolean;
   lineStyle: 'full' | 'nonFull';
   imagePath?: string;
@@ -19,12 +20,12 @@ export function Sentence(props: Props) {
   if (props.lineStyle === 'nonFull') {
     ableStyle = {
       textDecoration: 'underline',
-      textDecorationColor: '#80cbc4',
+      textDecorationColor: '#a1887f',
       textDecorationThickness: '1.5px',
     }
     disableStyle = {
       textDecoration: 'underline',
-      textDecorationColor: '#a1887f',
+      textDecorationColor: '#80cbc4',
       textDecorationThickness: '1.5px',
     }
   } else {
@@ -38,7 +39,7 @@ export function Sentence(props: Props) {
   if (props.existIllust) {
     if (displayImage) {
       return (
-        <>
+        <span>
           <a
             onMouseDown={() => {
               setDisplayImage(false);
@@ -51,13 +52,13 @@ export function Sentence(props: Props) {
             path={props.imagePath}
             display={true}
             sentence={props.sentence}
+            enSentence={props.enSentence}
             displayPosition={props.displayPosition}
           />
-        </>
+        </span>
       )
     } else {
       return (
-        <>
           <a
             onMouseDown={() => {
               setDisplayImage(true);
@@ -66,14 +67,13 @@ export function Sentence(props: Props) {
           >
             {props.sentence}
           </a>
-        </>
       )
     }
   } else {
     return (
-      <>
+      <span>
         {props.sentence}
-      </>
+      </span>
     )
   }
 }

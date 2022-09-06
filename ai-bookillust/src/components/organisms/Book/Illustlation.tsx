@@ -5,6 +5,7 @@ import '../../../style/illustlation.css';
 interface Props {
   path: string | undefined;
   sentence: string;
+  enSentence?: string;
   display: boolean;
   displayPosition?: 'right' | 'left';
 }
@@ -41,6 +42,7 @@ export function Illustlation(props: Props) {
           className={'illustlation'}
         />
         <IllustlationDialog
+          enSentence={props.enSentence}
           open={isOpen}
           onClose={handleClose}
           sentence={props.sentence}

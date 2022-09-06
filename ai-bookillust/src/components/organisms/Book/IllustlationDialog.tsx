@@ -5,6 +5,7 @@ interface Props {
   open: boolean;
   onClose: () => void;
   sentence: string;
+  enSentence?: string;
   path: string | undefined;
 }
 
@@ -26,7 +27,8 @@ export function IllustlationDialog(props: Props) {
         <img src={path} style={style} />
       </DialogContent>
       <DialogContent>
-        {sentence}
+        {sentence}<br/>
+        {props.enSentence}
       </DialogContent>
     </Dialog>
   );

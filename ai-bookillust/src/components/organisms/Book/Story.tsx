@@ -1,28 +1,23 @@
 // import { CSSProperties } from "@mui/styled-engine";
 import { memo, useEffect, useState, VFC, CSSProperties } from "react";
+import { useLocation } from "react-router-dom";
 import { Sentence } from "./Sentence";
 
 interface Props {
-  sentence: string;
-  existIllust: boolean;
-  lineStyle: 'full' | 'nonFull';
-  imagePath?: string;
-  displayImage?: boolean;
-  displayPosition?: 'right' | 'left';
+  titleId: string;
+  illustrator: string;
 };
 
-function ImageAndSentence(props: Props, displayImage: boolean) {
-  ;
-}
-
-export const Story: VFC = memo(() => {
+export function Story(props: Props) {
   const [ text, setText ] = useState<String>();
+  const [ enText, setEnText ] = useState<any>();
   const [ metaData, setMetaData ] = useState<any>();
+  const search = useLocation().search;
+  const query = new URLSearchParams(search);
 
-  let title = "kumo";
-  let model: 'DALL-E2' | 'StableDiffusion' = 'StableDiffusion';
-  let lineStyle: 'full' | 'nonFull' = 'nonFull';
-  // let lineStyle: 'full' | 'nonFull' = (model === 'DALL-E2') ? 'full' : 'nonFull';
+  let title = props.titleId;
+  let model = props.illustrator;
+  let lineStyle: 'full' | 'nonFull' = model === 'DALL-E2' ? 'nonFull' : 'full';
 
   useEffect(() => {
     const fetch_data = async () => {
@@ -38,6 +33,14 @@ export const Story: VFC = memo(() => {
       setText(body);
     };
     fetch_text();
+
+    const fetch_enText = async () => {
+      const response = await fetch(`${window.location.origin}/assets/${title}/text.en`);
+      const body = await response.text();
+      let enTextArray = body.split('\n');
+      setEnText(enTextArray);
+    };
+    fetch_enText();
   }, []);
 
   let latest_n = -1000;
@@ -64,8 +67,8 @@ export const Story: VFC = memo(() => {
             }
             illust_idx += 1;
             return (
-              <>
-                <div key={`book_paragraph_${n}`}>
+              <span key={`book_paragraph_${n}`}>
+                <div>
                   <br/>
                   <div style={{fontSize: '1.5em', fontWeight: 'bold', textAlign: 'center'}}>
                     {lineData[0].name}
@@ -73,18 +76,19 @@ export const Story: VFC = memo(() => {
                 </div>
                 <Sentence
                   sentence={str}
+                  enSentence={enText ? enText[n]: undefined}
                   existIllust={true}
                   imagePath={`${window.location.origin}/assets/${title}/${model}/${imageData[0].filename[0]}`}
                   displayImage={display}
                   displayPosition={illust_idx % 2 === 0 ? 'left' : 'right'}
                   lineStyle={lineStyle}
                 />
-              </>
+              </span>
             )
           } else {
             return (
-              <>
-                <div key={`book_paragraph_${n}`}>
+              <span key={`book_paragraph_${n}`}>
+                <div>
                   <br/>
                   <div style={{fontSize: '1.5em', fontWeight: 'bold', textAlign: 'center'}}>
                     {lineData[0].name}
@@ -95,7 +99,7 @@ export const Story: VFC = memo(() => {
                   existIllust={false}
                   lineStyle={lineStyle}
                 />
-              </>
+              </span>
             )
           }
         } else {
@@ -107,26 +111,31 @@ export const Story: VFC = memo(() => {
             }
             illust_idx += 1;
             return (
-              <Sentence
-                sentence={str}
-                existIllust={true}
-                imagePath={`${window.location.origin}/assets/${title}/${model}/${imageData[0].filename[0]}`}
-                displayImage={display}
-                displayPosition={illust_idx % 2 === 0 ? 'left' : 'right'}
-                lineStyle={lineStyle}
-              />
+              <span key={`book_paragraph_${n}`}>
+                <Sentence
+                  sentence={str}
+                  enSentence={enText ? enText[n]: undefined}
+                  existIllust={true}
+                  imagePath={`${window.location.origin}/assets/${title}/${model}/${imageData[0].filename[0]}`}
+                  displayImage={display}
+                  displayPosition={illust_idx % 2 === 0 ? 'left' : 'right'}
+                  lineStyle={lineStyle}
+                />
+              </span>
             )
           } else {
             return (
-              <Sentence
-                sentence={str}
-                existIllust={false}
-                lineStyle={lineStyle}
-              />
+              <span key={`book_paragraph_${n}`}>
+                <Sentence
+                  sentence={str}
+                  existIllust={false}
+                  lineStyle={lineStyle}
+                />
+              </span>
             )
           }
         }
       })}
     </>
   )
-})
+}
