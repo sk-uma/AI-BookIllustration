@@ -35,6 +35,16 @@
     <meta name="twitter:image" content="https://sk-uma.github.io/AI-BookIllustration/assets/chumon/StableDiffusion/0000000007_0000000000.jpg" data-react-helmet="true">
     <meta name="twitter:description" content="好きな位置にAIが生成した挿絵を入れられるサイト" data-react-helmet="true">
     <meta name="twitter:title" content="AI挿絵" data-react-helmet="true">
+    <script>
+      // GitHub Pages での SPA アドレス解決用
+      (function(){
+        const query = window.location.search;
+        if (query.startsWith('?p=')) {
+          const route = decodeURIComponent(query.substr(3));
+          window.history.replaceState(null, null, route);
+        }
+      })();
+    </script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
