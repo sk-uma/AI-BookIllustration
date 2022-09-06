@@ -1,5 +1,6 @@
 // import { CSSProperties } from "@mui/styled-engine";
 import { useEffect, useState } from "react";
+import { constUrl } from "../../../constant/constUrl";
 import { Sentence } from "./Sentence";
 
 interface Props {
@@ -18,21 +19,21 @@ export function Story(props: Props) {
 
   useEffect(() => {
     const fetch_data = async () => {
-      const response = await fetch(`${window.location.origin}/assets/${title}/${model}/metadata.json`);
+      const response = await fetch(`${window.location.origin}/${constUrl.path}/assets/${title}/${model}/metadata.json`);
       const body = await response.json();
       setMetaData(body);
     }
     fetch_data();
 
     const fetch_text = async () => {
-      const response = await fetch(`${window.location.origin}/assets/${title}/text.txt`);
+      const response = await fetch(`${window.location.origin}/${constUrl.path}/assets/${title}/text.txt`);
       const body = await response.text();
       setText(body);
     };
     fetch_text();
 
     const fetch_enText = async () => {
-      const response = await fetch(`${window.location.origin}/assets/${title}/text.en`);
+      const response = await fetch(`${window.location.origin}/${constUrl.path}/assets/${title}/text.en`);
       const body = await response.text();
       let enTextArray = body.split('\n');
       setEnText(enTextArray);
@@ -72,7 +73,7 @@ export function Story(props: Props) {
                   sentence={str}
                   enSentence={enText ? enText[n]: undefined}
                   existIllust={true}
-                  imagePath={`${window.location.origin}/assets/${title}/${model}/${imageData[0].filename[0]}`}
+                  imagePath={`${window.location.origin}/${constUrl.path}/assets/${title}/${model}/${imageData[0].filename[0]}`}
                   displayImage={display}
                   displayPosition={illust_idx % 2 === 0 ? 'left' : 'right'}
                   lineStyle={lineStyle}
@@ -110,7 +111,7 @@ export function Story(props: Props) {
                   sentence={str}
                   enSentence={enText ? enText[n]: undefined}
                   existIllust={true}
-                  imagePath={`${window.location.origin}/assets/${title}/${model}/${imageData[0].filename[0]}`}
+                  imagePath={`${window.location.origin}/${constUrl.path}/assets/${title}/${model}/${imageData[0].filename[0]}`}
                   displayImage={display}
                   displayPosition={illust_idx % 2 === 0 ? 'left' : 'right'}
                   lineStyle={lineStyle}

@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { memo, VFC } from "react";
 import { useLocation } from "react-router-dom";
 import { bookInterface, booklist } from "../../constant/bookList";
+import { constUrl } from "../../constant/constUrl";
 import { MyHelmet } from "../layout/MyHelmet";
 import { Story } from "../organisms/Book/Story";
 import { Title } from "../organisms/Book/Title";
@@ -24,7 +25,7 @@ export const Book: VFC = memo(() => {
             title={bookl[0].title}
             author={bookl[0].auther}
             illustrator={bookl[0].illustrator}
-            imagePath={`${window.location.origin}/assets/${titleId}/${illustrator}/${bookl[0].headerPath}`}
+            imagePath={`${window.location.origin}/${constUrl.path}/assets/${titleId}/${illustrator}/${bookl[0].headerPath}`}
           />
           <Box style={{width: '85%', maxWidth: '1200px', margin: 'auto'}}>
             <Story

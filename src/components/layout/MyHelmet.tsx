@@ -1,5 +1,6 @@
 import {Helmet} from 'react-helmet';
 import { bookInterface } from '../../constant/bookList';
+import { constUrl } from '../../constant/constUrl';
 
 
 interface Props {
@@ -14,12 +15,12 @@ export function MyHelmet(props: Props) {
   if (props.page === 'book') {
     description = `AIによって生成された${props.book?.title}の挿絵`;
     title = props.book?.title;
-    image = `${window.location.origin}/assets/${props.book?.titleId}/${props.book?.illustrator}/${props.book?.headerPath}`;
+    image = `${window.location.origin}/${constUrl.path}/assets/${props.book?.titleId}/${props.book?.illustrator}/${props.book?.headerPath}`;
     type = 'website';
   } else {
     description = `AIによって生成された挿絵`;
     title = 'AI挿絵';
-    image = `${window.location.origin}/assets/chumon/StableDiffusion/0000000007_0000000000.jpg`;
+    image = `${window.location.origin}/${constUrl.path}/assets/chumon/StableDiffusion/0000000007_0000000000.jpg`;
     type = 'website';
   }
 
