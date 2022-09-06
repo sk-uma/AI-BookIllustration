@@ -19,16 +19,21 @@ export const Story: VFC = memo(() => {
   const [ text, setText ] = useState<String>();
   const [ metaData, setMetaData ] = useState<any>();
 
+  let title = "kumo";
+  let model: 'DALL-E2' | 'StableDiffusion' = 'StableDiffusion';
+  let lineStyle: 'full' | 'nonFull' = 'nonFull';
+  // let lineStyle: 'full' | 'nonFull' = (model === 'DALL-E2') ? 'full' : 'nonFull';
+
   useEffect(() => {
     const fetch_data = async () => {
-      const response = await fetch(`${window.location.origin}/assets/kaijin/DALL-E2/metadata.json`);
+      const response = await fetch(`${window.location.origin}/assets/${title}/${model}/metadata.json`);
       const body = await response.json();
       setMetaData(body);
     }
     fetch_data();
 
     const fetch_text = async () => {
-      const response = await fetch(`${window.location.origin}/assets/kaijin/text.txt`);
+      const response = await fetch(`${window.location.origin}/assets/${title}/text.txt`);
       const body = await response.text();
       setText(body);
     };
@@ -69,10 +74,10 @@ export const Story: VFC = memo(() => {
                 <Sentence
                   sentence={str}
                   existIllust={true}
-                  imagePath={`${window.location.origin}/assets/kaijin/DALL-E2/${imageData[0].filename[0]}`}
+                  imagePath={`${window.location.origin}/assets/${title}/${model}/${imageData[0].filename[0]}`}
                   displayImage={display}
                   displayPosition={illust_idx % 2 === 0 ? 'left' : 'right'}
-                  lineStyle={'nonFull'}
+                  lineStyle={lineStyle}
                 />
               </>
             )
@@ -88,7 +93,7 @@ export const Story: VFC = memo(() => {
                 <Sentence
                   sentence={str}
                   existIllust={false}
-                  lineStyle={'nonFull'}
+                  lineStyle={lineStyle}
                 />
               </>
             )
@@ -105,10 +110,10 @@ export const Story: VFC = memo(() => {
               <Sentence
                 sentence={str}
                 existIllust={true}
-                imagePath={`${window.location.origin}/assets/kaijin/DALL-E2/${imageData[0].filename[0]}`}
+                imagePath={`${window.location.origin}/assets/${title}/${model}/${imageData[0].filename[0]}`}
                 displayImage={display}
                 displayPosition={illust_idx % 2 === 0 ? 'left' : 'right'}
-                lineStyle={'nonFull'}
+                lineStyle={lineStyle}
               />
             )
           } else {
@@ -116,7 +121,7 @@ export const Story: VFC = memo(() => {
               <Sentence
                 sentence={str}
                 existIllust={false}
-                lineStyle={'nonFull'}
+                lineStyle={lineStyle}
               />
             )
           }

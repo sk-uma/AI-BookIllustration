@@ -30,7 +30,7 @@ export function Sentence(props: Props) {
   } else {
     ableStyle = {
       textDecoration: 'underline',
-      textDecorationColor: '#80cbc4',
+      textDecorationColor: '#a1887f',
       textDecorationThickness: '1.5px',
     }
   }
