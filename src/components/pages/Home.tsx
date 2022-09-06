@@ -1,6 +1,7 @@
 import { Grid, Typography, Divider } from "@mui/material";
 import { memo, VFC } from "react";
 import { bookInterface, booklist } from "../../constant/bookList";
+import { MyHelmet } from "../layout/MyHelmet";
 import { BookCard } from "../organisms/Home/BookCard";
 
 export const Home: VFC = memo(() => {
@@ -8,6 +9,7 @@ export const Home: VFC = memo(() => {
 
   return (
     <div style={{width: '95%', margin: 'auto'}}>
+      <MyHelmet page={"top"}/>
       <Typography style={{ fontSize: 23, textAlign: 'center', fontWeight: 'bold' }}>
         <p>作品一覧</p>
         <Divider/>
