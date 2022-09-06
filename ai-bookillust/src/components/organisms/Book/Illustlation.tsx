@@ -23,14 +23,12 @@ export function Illustlation(props: Props) {
     marginRight: props.displayPosition === 'left' ? '15px' : '0px',
   }
   const [ isOpen, setIsOpen ] = useState<boolean>(false);
-  const [ width, height ] = useWindowSize();
+  const wh = useWindowSize();
+  const width = wh[0];
+  // height = height * -1 * -1;
 
   const handleClose = () => {
     setIsOpen(false);
-  }
-
-  const handleOpen = () => {
-    setIsOpen(true);
   }
 
   if (props.display) {

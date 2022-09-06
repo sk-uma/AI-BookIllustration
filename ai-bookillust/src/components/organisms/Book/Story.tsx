@@ -1,6 +1,5 @@
 // import { CSSProperties } from "@mui/styled-engine";
-import { memo, useEffect, useState, VFC, CSSProperties } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { Sentence } from "./Sentence";
 
 interface Props {
@@ -12,8 +11,6 @@ export function Story(props: Props) {
   const [ text, setText ] = useState<String>();
   const [ enText, setEnText ] = useState<any>();
   const [ metaData, setMetaData ] = useState<any>();
-  const search = useLocation().search;
-  const query = new URLSearchParams(search);
 
   let title = props.titleId;
   let model = props.illustrator;
@@ -41,6 +38,7 @@ export function Story(props: Props) {
       setEnText(enTextArray);
     };
     fetch_enText();
+    // eslint-disable-next-line
   }, []);
 
   let latest_n = -1000;
@@ -49,14 +47,10 @@ export function Story(props: Props) {
     <>
       {text?.split('\r\n').map((str: string, n: number) => {
         let lineData = metaData?.paragraph.filter((data: any) => {
-          return data.line == n
+          return data.line === n;
         })
-        let image_n = 0;
         let imageData = metaData?.images.filter((data: any, i: number) => {
-          if (data.line == n) {
-            image_n = i;
-          }
-          return data.line == n
+          return data.line === n;
         })
         if (lineData?.length !== 0) {
           if (imageData?.length !== 0) {

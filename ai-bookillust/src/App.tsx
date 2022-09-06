@@ -3,7 +3,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { Router } from './router/router';
 import { BrowserRouter } from 'react-router-dom';
-import { blue, brown, cyan, deepPurple, green, orange, red } from '@mui/material/colors';
+import { brown, cyan, deepPurple, green, orange, red } from '@mui/material/colors';
 
 function App() {
   const theme = createTheme({

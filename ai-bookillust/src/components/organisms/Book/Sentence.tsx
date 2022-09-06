@@ -1,6 +1,4 @@
-import { textDecoration } from "@chakra-ui/react";
-import { Button } from "@mui/material";
-import { memo, useState, VFC, CSSProperties, useEffect } from "react";
+import { useState, CSSProperties } from "react";
 import { Illustlation } from "./Illustlation";
 
 interface Props {
@@ -40,14 +38,14 @@ export function Sentence(props: Props) {
     if (displayImage) {
       return (
         <span>
-          <a
+          <span
             onMouseDown={() => {
               setDisplayImage(false);
             }}
             style={ableStyle}
           >
             {props.sentence}
-          </a>
+          </span>
           <Illustlation
             path={props.imagePath}
             display={true}
@@ -59,14 +57,14 @@ export function Sentence(props: Props) {
       )
     } else {
       return (
-          <a
+          <span
             onMouseDown={() => {
               setDisplayImage(true);
             }}
             style={disableStyle}
           >
             {props.sentence}
-          </a>
+          </span>
       )
     }
   } else {

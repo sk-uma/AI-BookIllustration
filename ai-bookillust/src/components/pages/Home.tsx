@@ -1,4 +1,4 @@
-import { Grid, Stack } from "@mui/material";
+import { Grid, Typography, Divider } from "@mui/material";
 import { memo, VFC } from "react";
 import { bookInterface, booklist } from "../../constant/bookList";
 import { BookCard } from "../organisms/Home/BookCard";
@@ -8,7 +8,11 @@ export const Home: VFC = memo(() => {
 
   return (
     <div style={{width: '95%', margin: 'auto'}}>
-      <Grid container spacing={1} style={{ justifyContent: 'left' }}>
+      <Typography style={{ fontSize: 23, textAlign: 'center', fontWeight: 'bold' }}>
+        <p>作品一覧</p>
+        <Divider/>
+      </Typography>
+      <Grid container spacing={1} style={{ justifyContent: 'left', marginTop: '10px' }}>
         {bookl.map((data: bookInterface, n: number) => {
           return (
             <Grid item key={n} xs={12} md={6} lg={4} xl={3} style={{minWidth: '350px'}}>

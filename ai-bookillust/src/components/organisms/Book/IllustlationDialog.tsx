@@ -24,7 +24,7 @@ export function IllustlationDialog(props: Props) {
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle>生成画像</DialogTitle>
       <DialogContent>
-        <img src={path} style={style} />
+        <img src={path} style={style} alt="generate by ai" />
       </DialogContent>
       <DialogContent>
         {sentence}<br/>

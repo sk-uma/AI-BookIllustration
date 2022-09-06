@@ -19,11 +19,11 @@ export function Title(props: Props) {
 
   return (
     <Box style={headerStyle}>
-      <div style={{backgroundColor: `rgba(255, 255, 255, 0.5)`}}>
+      <div style={{backgroundColor: `rgba(255, 255, 255, 0.6)`}}>
         <div style={{textAlign: 'center', fontSize: '3em', paddingTop: '10px'}}>
           {props.title}<br/>
         </div>
-        <div style={{marginRight: '15%', textAlign: 'right', paddingBottom: '10px'}}>
+        <div style={{marginRight: '15%', textAlign: 'right', paddingBottom: '10px', fontWeight: 'bold'}}>
           <div>
             著・{props.author}
           </div>
