@@ -1,7 +1,8 @@
-import { CSSProperties, useState } from "react";
+import { useState } from "react";
 import { IllustlationDialog } from "./IllustlationDialog";
-import '../../../style/illustlation.css';
-import { Box } from "@mui/material";
+// import '../../../style/illustlation.css';
+import { Box, Fade, Grow, SxProps } from "@mui/material";
+import { makeStyles } from "@mui/material/styles";
 import { useWindowSize } from "../../hooks/useWindowSize";
 
 interface Props {
@@ -12,15 +13,23 @@ interface Props {
   displayPosition?: 'right' | 'left';
 }
 
+
 export function Illustlation(props: Props) {
-  const imageStyle: CSSProperties = {
+  const imageStyle: SxProps = {
     float: props.displayPosition,
     margin: '15px',
     width: '250px',
     height: '250px',
     overflow: 'hidden',
+    borderRadius: '5px',
     marginLeft: props.displayPosition === 'left' ? '0px' : '15px',
     marginRight: props.displayPosition === 'left' ? '15px' : '0px',
+    transition: '1s all',
+    '&:hover': {
+      // transform: 'scale(1.2, 1.2)',
+      overflow: 'hidden',
+      transform: 'scale(0.95, 0.95)',
+    },
   }
   const [ isOpen, setIsOpen ] = useState<boolean>(false);
   const wh = useWindowSize();
@@ -65,7 +74,7 @@ export function Illustlation(props: Props) {
           <Box
             component="img"
             src={props.path}
-            style={imageStyle}
+            sx={imageStyle}
             onMouseDown={() => {
               setIsOpen(true);
             }}
